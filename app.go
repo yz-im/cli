@@ -22,6 +22,10 @@ func NewApp(os ...Option) *App {
 	return a
 }
 
+func Default() *App {
+	return &App{}
+}
+
 func (a *App) buildCommand() {
 	a.cmd = &cobra.Command{}
 }
