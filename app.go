@@ -22,8 +22,8 @@ func NewApp(os ...Option) *App {
 	return a
 }
 
-// todo
 func (a *App) buildCommand() {
+	a.cmd = &cobra.Command{}
 }
 
 func (a *App) Command() *cobra.Command {
