@@ -9,17 +9,26 @@ import (
 )
 
 type App struct {
-	name string
-	cmd  *cobra.Command
+	name    string
+	cmd     *cobra.Command
+	runFunc RunFunc
 }
 
-func NewApp(os ...Option) *App {
+type RunFunc func(a *App)
+
+func NewApp(name string, os ...Option) *App {
 	a := &App{}
 	for _, o := range os {
 		o(a)
 	}
 	a.buildCommand()
 	return a
+}
+
+func WithRunFunc(run RunFunc) RunFunc {
+	return func(a *App) {
+		a.runFunc = run
+	}
 }
 
 func Default() *App {
